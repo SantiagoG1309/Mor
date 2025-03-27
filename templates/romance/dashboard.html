@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Romántico</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body class="dashboard-page">
+    <div class="hearts-bg"></div>
+    
+    <div class="container">
+        <header class="dashboard-header">
+            <h1>Elige una opcion:</h1>
+            <div class="header-actions">
+                <a href="{% url 'toggle_dark_mode' %}" class="btn btn-mode">
+                    <i class="fas fa-moon"></i> Modo Oscuro
+                </a>
+                <a href="{% url 'inicio' %}" class="btn btn-logout">
+                    <i class="fas fa-sign-out-alt"></i> Salir
+                </a>
+            </div>
+        </header>
+        
+        <div class="dashboard-grid">
+            <a href="{% url 'recuerdos_lista' %}" class="dashboard-card">
+                <div class="card-icon"><i class="fas fa-heart"></i></div>
+                <h2>Nuestros Recuerdos</h2>
+                <p>Pa recordar</p>
+            </a>
+            
+            <a href="{% url 'mensajes_lista' %}" class="dashboard-card">
+                <div class="card-icon"><i class="fas fa-envelope-open-text"></i></div>
+                <h2>Mensajes Especiales</h2>
+                <p>Palabras bonitas</p>
+            </a>
+            
+            <a href="{% url 'fotos_lista' %}" class="dashboard-card">
+                <div class="card-icon"><i class="fas fa-camera"></i></div>
+                <h2>Nuestras Fotos</h2>
+                <p>Pa ver</p>
+            </a>
+            
+            <a href="{% url 'musica_lista' %}" class="dashboard-card">
+                <div class="card-icon"><i class="fas fa-music"></i></div>
+                <h2>Música</h2>
+                <p>Musica bonita</p>
+            </a>
+            
+            <a href="{% url 'sorpresas' %}" class="dashboard-card">
+                <div class="card-icon"><i class="fas fa-gift"></i></div>
+                <h2>Sorpresas</h2>
+                <p>Por ahora solo una mata</p>
+            </a>
+        </div>
+    </div>
+    
+    <script src="{% static 'js/hearts.js' %}"></script>
+    <script src="{% static 'js/dark-mode.js' %}"></script>
+</body>
+</html>

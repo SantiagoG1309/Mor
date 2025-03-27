@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- Cabeza -->
+  <circle cx="100" cy="60" r="30" fill="#FFD3B6" stroke="#333" stroke-width="2"/>
+  
+  <!-- Cara -->
+  <circle cx="90" cy="55" r="3" fill="#333"/> <!-- Ojo izquierdo -->
+  <circle cx="110" cy="55" r="3" fill="#333"/> <!-- Ojo derecho -->
+  <path d="M95 70 Q100 75 105 70" stroke="#333" stroke-width="2" fill="none"/> <!-- Sonrisa -->
+  <path d="M85 45 Q90 40 95 45" stroke="#333" stroke-width="1.5" fill="none"/> <!-- Ceja izquierda -->
+  <path d="M105 45 Q110 40 115 45" stroke="#333" stroke-width="1.5" fill="none"/> <!-- Ceja derecha -->
+  
+  <!-- Cuerpo -->
+  <rect x="85" y="90" width="30" height="40" rx="10" fill="#FF9AA2" stroke="#333" stroke-width="2"/>
+  
+  <!-- Brazos -->
+  <g class="left-arm">
+    <path d="M85 95 Q65 110 70 130" stroke="#333" stroke-width="2" fill="#FFD3B6"/>
+    <circle cx="70" cy="130" r="5" fill="#FFD3B6" stroke="#333" stroke-width="1.5"/>
+  </g>
+  
+  <g class="right-arm">
+    <path d="M115 95 Q135 110 130 130" stroke="#333" stroke-width="2" fill="#FFD3B6"/>
+    <circle cx="130" cy="130" r="5" fill="#FFD3B6" stroke="#333" stroke-width="1.5"/>
+  </g>
+  
+  <!-- Piernas -->
+  <g class="left-leg">
+    <path d="M90 130 Q85 150 90 170" stroke="#333" stroke-width="2" fill="#FFD3B6"/>
+    <ellipse cx="90" cy="175" rx="8" ry="5" fill="#333"/>
+  </g>
+  
+  <g class="right-leg">
+    <path d="M110 130 Q115 150 110 170" stroke="#333" stroke-width="2" fill="#FFD3B6"/>
+    <ellipse cx="110" cy="175" rx="8" ry="5" fill="#333"/>
+  </g>
+  
+  <!-- Animación -->
+  <style>
+    @keyframes dance {
+      0% { transform: rotate(0deg) translateY(0); }
+      25% { transform: rotate(-5deg) translateY(-5px); }
+      50% { transform: rotate(0deg) translateY(0); }
+      75% { transform: rotate(5deg) translateY(-5px); }
+      100% { transform: rotate(0deg) translateY(0); }
+    }
+    
+    @keyframes arm-wave {
+      0% { transform: rotate(0deg); }
+      50% { transform: rotate(15deg); }
+      100% { transform: rotate(0deg); }
+    }
+    
+    @keyframes leg-dance {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-3px); }
+      100% { transform: translateY(0); }
+    }
+    
+    svg { transform-origin: center; animation: dance 2s infinite ease-in-out; }
+    .left-arm { transform-origin: 85px 95px; animation: arm-wave 1s infinite ease-in-out alternate; }
+    .right-arm { transform-origin: 115px 95px; animation: arm-wave 1s infinite ease-in-out alternate-reverse; }
+    .left-leg { transform-origin: 90px 130px; animation: leg-dance 1s infinite ease-in-out 0.5s; }
+    .right-leg { transform-origin: 110px 130px; animation: leg-dance 1s infinite ease-in-out; }
+  </style>
+</svg>

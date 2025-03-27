@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuestra Música</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body class="musica-page">
+    <div class="hearts-bg"></div>
+    
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-music"></i> Nuestra Música <i class="fas fa-music"></i></h1>
+            <div class="header-actions">
+                <a href="{% url 'musica_crear' %}" class="btn btn-add"><i class="fas fa-plus"></i> Nueva Canción</a>
+                <a href="{% url 'dashboard' %}" class="btn btn-back"><i class="fas fa-home"></i> Dashboard</a>
+            </div>
+        </header>
+        
+        <div class="musica-grid">
+            {% if canciones %}
+                {% for cancion in canciones %}
+                <div class="musica-card">
+                    <div class="musica-content">
+                        <h2>{{ cancion.titulo }}</h2>
+                        <p class="artista"><i class="fas fa-user"></i> {{ cancion.artista }}</p>
+                        <div class="audio-player">
+                            <audio controls>
+                                <source src="{{ cancion.archivo.url }}" type="audio/mpeg">
+                                Tu navegador no soporta audio HTML5.
+                            </audio>
+                        </div>
+                        <div class="actions-container">
+                            <a href="{% url 'musica_eliminar' cancion.id %}" class="btn-delete" onclick="return confirm('¿Estás seguro de que deseas eliminar esta canción?');"><i class="fas fa-trash-alt"></i></a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="empty-state">
+                    <i class="fas fa-music"></i>
+                    <p>Aún no hay canciones. ¡Sube la primera!</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+    
+    <script src="{% static 'js/hearts.js' %}"></script>
+    <script src="{% static 'js/dark-mode.js' %}"></script>
+</body>
+</html>

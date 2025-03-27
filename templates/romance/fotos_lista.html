@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuestras Fotos</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body class="fotos-page">
+    <div class="hearts-bg"></div>
+    
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-camera"></i> Nuestras Fotos <i class="fas fa-video"></i></h1>
+            <div class="header-actions">
+                <a href="{% url 'foto_crear' %}" class="btn btn-add"><i class="fas fa-plus"></i> Nueva Foto/Video</a>
+                <a href="{% url 'dashboard' %}" class="btn btn-back"><i class="fas fa-home"></i> Dashboard</a>
+            </div>
+        </header>
+        
+        <div class="fotos-grid">
+            {% if fotos %}
+                {% for foto in fotos %}
+                <div class="foto-card">
+                    <div class="foto-media">
+                        {% if foto.es_video %}
+                        <video controls>
+                            <source src="{{ foto.imagen.url }}" type="video/mp4">
+                            Tu navegador no soporta videos.
+                        </video>
+                        <div class="video-badge"><i class="fas fa-video"></i></div>
+                        {% else %}
+                        <img src="{{ foto.imagen.url }}" alt="{{ foto.titulo }}">
+                        {% endif %}
+                    </div>
+                    <div class="foto-content">
+                        <h2>{{ foto.titulo }}</h2>
+                        <p class="fecha"><i class="fas fa-calendar-alt"></i> {{ foto.fecha }}</p>
+                        {% if foto.descripcion %}
+                        <p class="descripcion">{{ foto.descripcion }}</p>
+                        {% endif %}
+                        <div class="actions-container">
+                            <a href="{% url 'foto_eliminar' foto.id %}" class="btn-delete" onclick="return confirm('¿Estás seguro de que deseas eliminar esta foto/video?');"><i class="fas fa-trash-alt"></i></a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="empty-state">
+                    <i class="fas fa-camera"></i>
+                    <p>Aún no hay fotos o videos. ¡Sube el primero!</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+    
+    <script src="{% static 'js/hearts.js' %}"></script>
+    <script src="{% static 'js/dark-mode.js' %}"></script>
+</body>
+</html>

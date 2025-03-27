@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenida Amor</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body class="inicio-page">
+    <div class="hearts-bg"></div>
+    
+    <div class="container">
+        <div class="welcome-card">
+            <h1 class="title">
+                <i class="fas fa-heart"></i> ¡Bienvenida mi Vida! <i class="fas fa-heart"></i>
+            </h1>
+            <p class="subtitle">Ingresa el dia en el que nos hicimos novios para entrar ❤️‍🔥</p>
+            
+            <form method="post" class="fecha-form">
+                {% csrf_token %}
+                <div class="form-group">
+                    {{ form.fecha }}
+                </div>
+                
+                {% if messages %}
+                <div class="messages">
+                    {% for message in messages %}
+                    <p class="error-message" style="display: none;">{{ message }}</p>
+                    <div class="notification" id="error-notification">
+                        Sabía que lo olvidarías...
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+                
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-heart"></i> Ingresar
+                </button>
+            </form>
+        </div>
+    </div>
+    
+    <script src="{% static 'js/hearts.js' %}"></script>
+    <script src="{% static 'js/dark-mode.js' %}"></script>
+    <script>
+        // JavaScript para manejar la notificación
+        document.addEventListener('DOMContentLoaded', function() {
+            const notification = document.getElementById('error-notification');
+            if (notification) {
+                // Mostrar la notificación
+                notification.style.display = 'block';
+                // Ocultar después de 3 segundos
+                setTimeout(() => {
+                    notification.style.opacity = '0';
+                    setTimeout(() => {
+                        notification.style.display = 'none';
+                    }, 500); // Espera a que termine la animación de desvanecimiento
+                }, 3000);
+            }
+        });
+    </script>
+</body>
+</html>

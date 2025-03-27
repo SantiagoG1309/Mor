@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorpresas Románticas</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body class="sorpresas-page">
+    <div class="hearts-bg"></div>
+    
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-gift"></i> Sorpresas <i class="fas fa-gift"></i></h1>
+            <div class="header-actions">
+                <a href="{% url 'dashboard' %}" class="btn btn-back"><i class="fas fa-home"></i> Dashboard</a>
+            </div>
+        </header>
+        
+        <div class="sorpresas-container">
+            <div class="dancing-doll">
+                <img src="{% static 'images/dancing_doll.svg' %}" alt="Muñeco">
+            </div>
+            
+            <div class="sorpresas-mensaje">
+                <h2>Pa ti</h2>
+                <p>.....
+                <p>❤️‍🔥❤️‍🔥❤️‍🔥</p>
+            </div>
+            
+            <div class="sorpresas-acciones">
+                <button id="btn-mensaje" class="btn">
+                    <i class="fas fa-heart"></i> Mensaje bonito
+                </button>
+                <a href="{% url 'flores' %}" class="btn btn-primary">
+                    <i class="fas fa-seedling"></i> Flores
+                </a>
+                <button class="btn btn-secondary disabled" disabled>
+                    <i class="fas fa-gift"></i> Próximamente
+                </button>
+                <button class="btn btn-secondary disabled" disabled>
+                    <i class="fas fa-star"></i> Próximamente
+                </button>
+                <button class="btn btn-secondary disabled" disabled>
+                    <i class="fas fa-magic"></i> Próximamente
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="{% static 'js/hearts.js' %}"></script>
+    <script src="{% static 'js/dark-mode.js' %}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const mensajes = [
+                "Eres lo mejor que me ha pasado en la vida",
+                "Cada día te quiero más",
+                "Eres mi persona favorita en todo el mundo",
+                "Contigo quiero pasar el resto de mi vida",
+                "Tu sonrisa ilumina mis días",
+                "Gracias por existir y estar en mi vida",
+                "Que bonita",
+                "Te amo más de lo que las palabras pueden expresar",
+                "Tus ojos son preciososs",
+                "Me encanta que no sepas hablar",
+                "Seras una gran Psicóloga",
+            ];
+            
+            const btnMensaje = document.getElementById('btn-mensaje');
+            
+            btnMensaje.addEventListener('click', function() {
+                const randomIndex = Math.floor(Math.random() * mensajes.length);
+                const mensaje = mensajes[randomIndex];
+                
+                alert('❤️‍🔥 ' + mensaje + ' ❤️‍🔥');
+            });
+        });
+    </script>
+</body>
+</html>

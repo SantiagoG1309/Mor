@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Mensaje Especial</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body class="mensaje-form-page">
+    <div class="hearts-bg"></div>
+    
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-heart"></i> Crear Mensaje Especial <i class="fas fa-heart"></i></h1>
+            <a href="{% url 'mensajes_lista' %}" class="btn btn-back"><i class="fas fa-arrow-left"></i> Volver</a>
+        </header>
+        
+        <div class="form-container">
+            <form method="post">
+                {% csrf_token %}
+                
+                <div class="form-group">
+                    <label for="{{ form.titulo.id_for_label }}">Título:</label>
+                    {{ form.titulo }}
+                </div>
+                
+                <div class="form-group">
+                    <label for="{{ form.contenido.id_for_label }}">Contenido:</label>
+                    {{ form.contenido }}
+                </div>
+                
+                <div class="form-group">
+                    <label for="{{ form.fecha.id_for_label }}">Fecha:</label>
+                    {{ form.fecha }}
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script src="{% static 'js/hearts.js' %}"></script>
+    <script src="{% static 'js/dark-mode.js' %}"></script>
+</body>
+</html>
